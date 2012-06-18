@@ -58,5 +58,13 @@
    </build>
 
 
+<distributionManagement>
+  <repository>
+    <id>gh-pages</id>
+    <url>file:///${basedir}/../../maven-external/release</url>
+  </repository>
+</distributionManagement>
+
+
 
 </project>
