@@ -35,9 +35,9 @@ import com.google.android.maps.OverlayItem;
  */
 public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 
-	private LinearLayout layout;
-	private TextView title;
-	private TextView snippet;
+	protected LinearLayout layout;
+	protected TextView title;
+	protected TextView snippet;
 
 	/**
 	 * Create a new BalloonOverlayView.
@@ -79,7 +79,6 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 		View v = inflater.inflate(R.layout.balloon_overlay, parent);
 		title = (TextView) v.findViewById(R.id.balloon_item_title);
 		snippet = (TextView) v.findViewById(R.id.balloon_item_snippet);
-		
 	}
 	
 	/**
@@ -107,12 +106,15 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 			title.setText("");
 			title.setVisibility(GONE);
 		}
-		if (item.getSnippet() != null) {
-			snippet.setVisibility(VISIBLE);
-			snippet.setText(item.getSnippet());
-		} else {
-			snippet.setText("");
-			snippet.setVisibility(GONE);
+		
+		if (snippet != null) {
+			if (item.getSnippet() != null) {
+				snippet.setVisibility(VISIBLE);
+				snippet.setText(item.getSnippet());
+			} else {
+				snippet.setText("");
+				snippet.setVisibility(GONE);
+			}
 		}
 	}
 	

@@ -269,8 +269,17 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		boolean isRecycled;
 		if (balloonView == null) {
 			balloonView = createBalloonOverlayView();
-			clickRegion = (View) balloonView.findViewById(R.id.balloon_inner_layout);
-			clickRegion.setOnTouchListener(createBalloonTouchListener());
+			clickRegion = (View) balloonView.findViewById(R.id.balloon_main_layout);
+			
+			clickRegion.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					onBalloonTap(currentFocusedIndex, currentFocusedItem);
+				}
+			});
+//			clickRegion.setOnTouchListener(createBalloonTouchListener());
+			
+			
 			closeRegion = (View) balloonView.findViewById(R.id.balloon_close);
 			if (closeRegion != null) {
 				if (!showClose) {
